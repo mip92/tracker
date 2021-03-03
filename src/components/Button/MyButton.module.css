@@ -1,0 +1,11 @@
+.Wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+}
+.Input{
+    grid-area: 1 / 1 / 2 / 2;
+}
+.Button{
+    grid-area: 1 / 2 / 2 / 3;
+}
