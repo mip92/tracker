@@ -1,7 +1,7 @@
 import {updateObjectArray, updateObjectArrayDoubleParam} from "../moment/objectHelper";
 /*const initState = {
     time: [
-        {id: "", name: "", start: "", isStarted: false, isMute: true}
+        {id: "", name: "", start: "", isStarted: false, isMute: true, count}
     ],
 }*/
 const initState = {
@@ -9,43 +9,104 @@ const initState = {
 }
 export default function timeReducer(state = initState, action) {
     switch (action.type) {
-        case "DEACTIVATE_TIMER":{
+        case "DEACTIVATE_TIMER": {
             return {...state, time: state.time.filter(obj => obj.id != action.id)}
         }
-        case "CREATE_NEW_TIMER": {
-            let newTimer = {
-                id: action.timerObj.id,
-                name: !action.timerObj.name ? "таймер":action.timerObj.name,
-                start: action.timerObj.start,
-                isStarted: true,
-                isMute: false,
+        case "CONTINUE_TIMER": {
+            return {
+                ...state,
+                time: state.time.map(u => {
+                    debugger
+                    if (u.id === action.id) {
+                        return {
+                            ...u, ...{isStarted: true}, ...{start:action.dateContinue-action.activeSecond*1000}
+                        }
+                    }
+                })
             }
-            return{...state,time:[...state.time,newTimer]}
-            /*let newTimer = {
-                id: action.timerObj.id,
-                name: !action.timerObj.name ? "таймер":action.timerObj.name,
-                start: action.timerObj.start,
-                isStarted: true,
-                isMute: false,
+        }
+        case "SET_ACTIVE_SECOND": {
+            return {
+                ...state,
+                time: state.time.map(u => {
+                    if (u.id === action.id) {
+                        return {
+                            ...u, ...{activeSecond: action.activeSecond}
+                        }
+                    }
+                })
             }
-            let stateCopy = {...state};
-            stateCopy.time = [...state.time];
-            stateCopy.time.push(newTimer);
-            return stateCopy;*/
+        }
+        case "STOP_TIMER": {
+            return {
+                ...state,
+                time: state.time.map(u => {
+                    if (u.id === action.id) {
+                        return {
+                            ...u, ...{isStarted: false}, ...{activeSecond: action.activeSecond}
+                        }
+                    }
+                })
+            }
+        }
+        case "SET_LOCAL_STORAGE_STATE":{
+            return {
+                ...state,
+                time: action.state
+            }
         }
 
-
+        case"CREATE_NEW_TIMER": {
+            let newTimer = {
+                id: action.timerObj.id,
+                name: !action.timerObj.name ? "таймер" : action.timerObj.name,
+                start: action.timerObj.start,
+                isStarted: true,
+                isMute: false,
+            }
+            return {...state, time: [...state.time, newTimer]}
+        }
         default:
             return state
     }
 }
 
 
-export const deactivateTimer=(id)=>{
-    return{
+export const deactivateTimer = (id) => {
+    return {
         type: "DEACTIVATE_TIMER",
         id,
     }
 }
 
+export const stopTimer = (id, activeSecond) => {
+    return {
+        type: "STOP_TIMER",
+        id,
+        activeSecond
+    }
+}
+export const continueTimer = (id,activeSecond, dateContinue) => {
+    return {
+        type: "CONTINUE_TIMER",
+        id,
+        activeSecond,
+        dateContinue
+    }
+}
+export const setSecond = (id, localActiveSecond) => {
+    return {
+        type: "SET_ACTIVE_SECOND",
+        id,
+        localActiveSecond,
+    }
+}
+export const setLocalStorageState = (state) => {
+    debugger
+
+    return {
+        type: "SET_LOCAL_STORAGE_STATE",
+        state:  state==null? [] : state
+    }
+}
 

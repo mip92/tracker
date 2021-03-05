@@ -1,5 +1,7 @@
 export const updateObjectArray=(items, itemId, objPropName, newObjProps)=> {
+    debugger
     return items.map(u => {
+        debugger
         if (u.objPropName === itemId) {
             return {...u, ...newObjProps}
         }

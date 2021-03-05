@@ -14,7 +14,7 @@ const MyButton = () => {
     const lastId = useSelector(state => state.timeReducer.time.length)
     const [timerName, setTimerName] = useState('');
     const onCreateNewTimer = () => {
-        const dateStart = moment()
+        let dateStart = Date.now();
         dispatch(createNewTimer({
             name:timerName,
             start:dateStart,
