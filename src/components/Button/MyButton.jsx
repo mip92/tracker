@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import MyInput from "../Input/Input";
-import {createNewTimer} from "../../redux/actions/buttonActions";
-import { makeStyles } from '@material-ui/core/styles';
+
 import useStyles from "../../style/style"
 import {Button} from "@material-ui/core";
 import s from"./MyButton.module.css"
-import moment from "moment";
+import {createNewTimer} from "../../redux/timeResucer";
 
 const MyButton = () => {
     const classes = useStyles();
@@ -25,7 +24,7 @@ const MyButton = () => {
         <div >
             <form className={classes.root} className={s.Wrapper} noValidate autoComplete="off">
                 <MyInput className={s.Input} value={timerName} setValue={setTimerName} id="outlined-basic"
-                         label="Enter tracker name" variant="filled" />
+                         label="Введите название таймера" variant="filled"/>
                 <Button className={s.Button} variant="contained" color="secondary" onClick={() => onCreateNewTimer()}>Старт</Button>
             </form>
         </div>

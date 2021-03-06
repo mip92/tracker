@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 const MyInput = ({id, label, variant, value, setValue}) => {
@@ -11,6 +10,7 @@ const MyInput = ({id, label, variant, value, setValue}) => {
                 id={id}
                 label={label}
                 variant={variant}
+                fullWidth
             />
         </div>
     );

@@ -1,7 +1,8 @@
 .Wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 8fr 1fr;
     text-align: center;
+    margin: 5px;
 }
 .Input{
     grid-area: 1 / 1 / 2 / 2;

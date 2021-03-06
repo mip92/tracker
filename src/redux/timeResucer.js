@@ -1,4 +1,3 @@
-import {updateObjectArray, updateObjectArrayDoubleParam} from "../moment/objectHelper";
 /*const initState = {
     time: [
         {id: "", name: "", start: "", isStarted: false, isMute: true, count}
@@ -16,7 +15,6 @@ export default function timeReducer(state = initState, action) {
             return {
                 ...state,
                 time: state.time.map(u => {
-                    debugger
                     if (u.id === action.id) {
                         return {
                             ...u, ...{isStarted: true}, ...{start:action.dateContinue-action.activeSecond*1000}
@@ -59,7 +57,7 @@ export default function timeReducer(state = initState, action) {
         case"CREATE_NEW_TIMER": {
             let newTimer = {
                 id: action.timerObj.id,
-                name: !action.timerObj.name ? "таймер" : action.timerObj.name,
+                name: !action.timerObj.name ? `Tаймер № ${action.timerObj.id}` : action.timerObj.name,
                 start: action.timerObj.start,
                 isStarted: true,
                 isMute: false,
@@ -102,11 +100,15 @@ export const setSecond = (id, localActiveSecond) => {
     }
 }
 export const setLocalStorageState = (state) => {
-    debugger
-
     return {
         type: "SET_LOCAL_STORAGE_STATE",
         state:  state==null? [] : state
+    }
+}
+export const createNewTimer=(timerObj)=>{
+    return{
+        type: "CREATE_NEW_TIMER",
+        timerObj,
     }
 }
 
