@@ -3,7 +3,7 @@ import s from "../App.module.css";
 import MyButton from "../Button/MyButton";
 import TimerList from "../TimerList/TimerList";
 import {useDispatch} from "react-redux";
-import {setLocalStorageState} from "../../redux/timeResucer";
+import {setLocalStorageState} from "../../redux/timeReduser";
 
 const Project = () => {
     const dispatch = useDispatch()

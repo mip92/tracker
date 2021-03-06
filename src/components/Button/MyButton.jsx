@@ -5,7 +5,7 @@ import MyInput from "../Input/Input";
 import useStyles from "../../style/style"
 import {Button} from "@material-ui/core";
 import s from"./MyButton.module.css"
-import {createNewTimer} from "../../redux/timeResucer";
+import {createNewTimer} from "../../redux/timeReduser";
 
 const MyButton = () => {
     const classes = useStyles();

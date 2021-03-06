@@ -24,7 +24,6 @@ export default function timeReducer(state = initState, action) {
             }
         }
         case "SET_ACTIVE_SECOND": {
-            debugger
             return {
                 ...state,
                 time: state.time.map(u => {
@@ -37,7 +36,6 @@ export default function timeReducer(state = initState, action) {
             }
         }
         case "STOP_TIMER": {
-            debugger
             return {
                 ...state,
                 time: state.time.map(u => {
