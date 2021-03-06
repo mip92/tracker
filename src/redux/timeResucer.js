@@ -19,23 +19,25 @@ export default function timeReducer(state = initState, action) {
                         return {
                             ...u, ...{isStarted: true}, ...{start:action.dateContinue-action.activeSecond*1000}
                         }
-                    }
+                    }else return u
                 })
             }
         }
         case "SET_ACTIVE_SECOND": {
+            debugger
             return {
                 ...state,
                 time: state.time.map(u => {
                     if (u.id === action.id) {
                         return {
-                            ...u, ...{activeSecond: action.activeSecond}
+                            ...u, activeSecond: action.localActiveSecond
                         }
-                    }
+                    }else return u
                 })
             }
         }
         case "STOP_TIMER": {
+            debugger
             return {
                 ...state,
                 time: state.time.map(u => {
@@ -43,7 +45,8 @@ export default function timeReducer(state = initState, action) {
                         return {
                             ...u, ...{isStarted: false}, ...{activeSecond: action.activeSecond}
                         }
-                    }
+
+                    }else return u
                 })
             }
         }

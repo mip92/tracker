@@ -2,9 +2,9 @@
     display: grid;
     grid-template-columns: 4fr 1fr 110px 1fr;
     text-align: center;
-    grid-gap: 3px;
 }
 .Button{
+    margin: 5px;
 
 }
 .Name{
